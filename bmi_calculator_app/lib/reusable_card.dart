@@ -18,3 +18,39 @@ class CreateContainer extends StatelessWidget {
     );
   }
 }
+
+const double labelSize = 30;
+const double iconSize = 80;
+
+class IconContent extends StatelessWidget {
+  final IconData fontName;
+  final String label;
+  const IconContent({
+    super.key,
+    required this.fontName,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            fontName,
+            size: iconSize,
+            color: Color(0xFF8D8E98),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(label,
+              style: TextStyle(
+                fontSize: labelSize,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF8D8E98),
+              )),
+        ]);
+  }
+}
+

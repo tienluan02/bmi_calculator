@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const double bottomContainerHeight = 80;
 const colorContainerValue = Color(0xFF1D1E33);
+const colorContainerPressed = Color(0xFF111328);
 const colorBottomContainer = Color(0xFFBE1555);
 
 class NameInput extends StatefulWidget {
@@ -14,6 +15,23 @@ class NameInput extends StatefulWidget {
 }
 
 class _NameInputState extends State<NameInput> {
+  Color maleCardColor = colorContainerValue;
+  Color femaleCardColor = colorContainerValue;
+
+  void updateColor(int gender) {
+    if (gender == 1) {
+      if (maleCardColor == colorContainerValue) {
+        maleCardColor = colorContainerPressed;
+        femaleCardColor = colorContainerValue;
+      }
+    } else {
+      if (femaleCardColor == colorContainerValue) {
+        femaleCardColor = colorContainerPressed;
+        maleCardColor = colorContainerValue;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,17 +55,29 @@ class _NameInputState extends State<NameInput> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: CreateContainer(
-                          colour: colorContainerValue,
-                        cardChild: Icon(
-                            FontAwesomeIcons.tractor),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            updateColor(1);
+                          });
+                        },
+                        child: CreateContainer(
+                          colour: maleCardColor,
+                          cardChild: IconContent(fontName: FontAwesomeIcons.mars, label: 'Male'),
+                        ),
                       ),
                     ),
                     Expanded(
-                      child: CreateContainer(
-                        colour: colorContainerValue,
-                        cardChild: Icon(
-                            FontAwesomeIcons.tractor),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            updateColor(2);
+                          });
+                        },
+                        child: CreateContainer(
+                          colour: femaleCardColor,
+                          cardChild: IconContent(fontName: FontAwesomeIcons.venus, label: 'Female'),
+                        ),
                       ),
                     ),
                   ],
@@ -56,8 +86,7 @@ class _NameInputState extends State<NameInput> {
               Expanded(
                 child: CreateContainer(
                   colour: colorContainerValue,
-                  cardChild: Icon(
-                      FontAwesomeIcons.person),
+                  cardChild: Icon(FontAwesomeIcons.person),
                 ),
               ),
               Expanded(
@@ -66,20 +95,19 @@ class _NameInputState extends State<NameInput> {
                     Expanded(
                       child: CreateContainer(
                         colour: colorContainerValue,
-                        cardChild: Icon(
-                            FontAwesomeIcons.person),
+                        cardChild: Icon(FontAwesomeIcons.person),
                       ),
                     ),
                     Expanded(
                       child: CreateContainer(
                         colour: colorContainerValue,
-                        cardChild: Icon(
-                            FontAwesomeIcons.person),
+                        cardChild: Icon(FontAwesomeIcons.person),
                       ),
                     ),
                   ],
                 ),
-              ), Container(
+              ),
+              Container(
                 color: colorBottomContainer,
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
@@ -90,3 +118,4 @@ class _NameInputState extends State<NameInput> {
         ));
   }
 }
+
