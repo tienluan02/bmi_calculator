@@ -6,6 +6,7 @@ const double bottomContainerHeight = 80;
 const colorContainerValue = Color(0xFF1D1E33);
 const colorContainerPressed = Color(0xFF111328);
 const colorBottomContainer = Color(0xFFBE1555);
+enum GenderName {male, female}
 
 class NameInput extends StatefulWidget {
   const NameInput({super.key});
@@ -18,8 +19,8 @@ class _NameInputState extends State<NameInput> {
   Color maleCardColor = colorContainerValue;
   Color femaleCardColor = colorContainerValue;
 
-  void updateColor(int gender) {
-    if (gender == 1) {
+  void updateColor(GenderName gender) {
+    if (gender == GenderName.male) {
       if (maleCardColor == colorContainerValue) {
         maleCardColor = colorContainerPressed;
         femaleCardColor = colorContainerValue;
@@ -58,7 +59,7 @@ class _NameInputState extends State<NameInput> {
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            updateColor(1);
+                            updateColor(GenderName.male);
                           });
                         },
                         child: CreateContainer(
@@ -71,7 +72,7 @@ class _NameInputState extends State<NameInput> {
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            updateColor(2);
+                            updateColor(GenderName.female);
                           });
                         },
                         child: CreateContainer(
