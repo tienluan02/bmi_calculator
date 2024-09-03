@@ -3,7 +3,7 @@ import 'reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const double bottomContainerHeight = 80;
-const colorContainerValue = Color(0xFF1D1E33);
+const colorContainerUnpressed = Color(0xFF1D1E33);
 const colorContainerPressed = Color(0xFF111328);
 const colorBottomContainer = Color(0xFFBE1555);
 enum GenderName {male, female}
@@ -16,19 +16,19 @@ class NameInput extends StatefulWidget {
 }
 
 class _NameInputState extends State<NameInput> {
-  Color maleCardColor = colorContainerValue;
-  Color femaleCardColor = colorContainerValue;
+  Color maleCardColor = colorContainerUnpressed;
+  Color femaleCardColor = colorContainerUnpressed;
 
   void updateColor(GenderName gender) {
     if (gender == GenderName.male) {
-      if (maleCardColor == colorContainerValue) {
+      if (maleCardColor == colorContainerUnpressed) {
         maleCardColor = colorContainerPressed;
-        femaleCardColor = colorContainerValue;
+        femaleCardColor = colorContainerUnpressed;
       }
     } else {
-      if (femaleCardColor == colorContainerValue) {
+      if (femaleCardColor == colorContainerUnpressed) {
         femaleCardColor = colorContainerPressed;
-        maleCardColor = colorContainerValue;
+        maleCardColor = colorContainerUnpressed;
       }
     }
   }
@@ -56,29 +56,25 @@ class _NameInputState extends State<NameInput> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: GestureDetector(
-                        onTap: () {
+                      child: CreateGenderContainer(
+                        onPress: () {
                           setState(() {
                             updateColor(GenderName.male);
                           });
                         },
-                        child: CreateContainer(
-                          colour: maleCardColor,
-                          cardChild: IconContent(fontName: FontAwesomeIcons.mars, label: 'Male'),
-                        ),
+                        colour: maleCardColor,
+                        cardChild: IconContent(fontName: FontAwesomeIcons.mars, label: 'Male'),
                       ),
                     ),
                     Expanded(
-                      child: GestureDetector(
-                        onTap: () {
+                      child: CreateGenderContainer(
+                        onPress: () {
                           setState(() {
                             updateColor(GenderName.female);
                           });
                         },
-                        child: CreateContainer(
-                          colour: femaleCardColor,
-                          cardChild: IconContent(fontName: FontAwesomeIcons.venus, label: 'Female'),
-                        ),
+                        colour: femaleCardColor,
+                        cardChild: IconContent(fontName: FontAwesomeIcons.venus, label: 'Female'),
                       ),
                     ),
                   ],
@@ -86,7 +82,7 @@ class _NameInputState extends State<NameInput> {
               ),
               Expanded(
                 child: CreateContainer(
-                  colour: colorContainerValue,
+                  colour: colorContainerUnpressed,
                   cardChild: Icon(FontAwesomeIcons.person),
                 ),
               ),
@@ -95,13 +91,13 @@ class _NameInputState extends State<NameInput> {
                   children: [
                     Expanded(
                       child: CreateContainer(
-                        colour: colorContainerValue,
+                        colour: colorContainerUnpressed,
                         cardChild: Icon(FontAwesomeIcons.person),
                       ),
                     ),
                     Expanded(
                       child: CreateContainer(
-                        colour: colorContainerValue,
+                        colour: colorContainerUnpressed,
                         cardChild: Icon(FontAwesomeIcons.person),
                       ),
                     ),
