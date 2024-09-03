@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-const double bottomContainerHeight = 80;
-const colorContainerUnpressed = Color(0xFF1D1E33);
-const colorContainerPressed = Color(0xFF111328);
-const colorBottomContainer = Color(0xFFBE1555);
-enum GenderName {male, female}
+import 'constants.dart';
 
 class NameInput extends StatefulWidget {
   const NameInput({super.key});
@@ -16,19 +11,20 @@ class NameInput extends StatefulWidget {
 }
 
 class _NameInputState extends State<NameInput> {
-  Color maleCardColor = colorContainerUnpressed;
-  Color femaleCardColor = colorContainerUnpressed;
+  Color maleCardColor = kColorContainerUnpressed;
+  Color femaleCardColor = kColorContainerUnpressed;
+  int height = 180;
 
   void updateColor(GenderName gender) {
     if (gender == GenderName.male) {
-      if (maleCardColor == colorContainerUnpressed) {
-        maleCardColor = colorContainerPressed;
-        femaleCardColor = colorContainerUnpressed;
+      if (maleCardColor == kColorContainerUnpressed) {
+        maleCardColor = kColorContainerPressed;
+        femaleCardColor = kColorContainerUnpressed;
       }
     } else {
-      if (femaleCardColor == colorContainerUnpressed) {
-        femaleCardColor = colorContainerPressed;
-        maleCardColor = colorContainerUnpressed;
+      if (femaleCardColor == kColorContainerUnpressed) {
+        femaleCardColor = kColorContainerPressed;
+        maleCardColor = kColorContainerUnpressed;
       }
     }
   }
@@ -51,6 +47,7 @@ class _NameInputState extends State<NameInput> {
         ),
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
                 child: Row(
@@ -63,7 +60,8 @@ class _NameInputState extends State<NameInput> {
                           });
                         },
                         colour: maleCardColor,
-                        cardChild: IconContent(fontName: FontAwesomeIcons.mars, label: 'Male'),
+                        cardChild: GenderContent(
+                            fontName: FontAwesomeIcons.mars, label: 'Male'),
                       ),
                     ),
                     Expanded(
@@ -74,7 +72,8 @@ class _NameInputState extends State<NameInput> {
                           });
                         },
                         colour: femaleCardColor,
-                        cardChild: IconContent(fontName: FontAwesomeIcons.venus, label: 'Female'),
+                        cardChild: GenderContent(
+                            fontName: FontAwesomeIcons.venus, label: 'Female'),
                       ),
                     ),
                   ],
@@ -82,22 +81,50 @@ class _NameInputState extends State<NameInput> {
               ),
               Expanded(
                 child: CreateContainer(
-                  colour: colorContainerUnpressed,
-                  cardChild: Icon(FontAwesomeIcons.person),
+                  colour: kColorContainerUnpressed,
+                  cardChild: Column(
+                    children: [
+                      IconContent(label: 'Height'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          Text(height.toString(), style: kTextStyleForCm),
+                          Text(
+                            'cm',
+                            style: kTextStyleForFonts,
+                          ),
+                        ],
+                      ),
+                      Slider(
+                          activeColor: kColorBottomContainer,
+                          inactiveColor: Color(0xFF8D8E98),
+                          min: 120.0,
+                          max: 220.0,
+                          value: height.toDouble(),
+                          onChanged: (double newValue) {
+                            setState(() {
+                              height = newValue.round();
+                            });
+                          })
+                    ],
+                  ),
                 ),
               ),
               Expanded(
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Expanded(
                       child: CreateContainer(
-                        colour: colorContainerUnpressed,
+                        colour: kColorContainerUnpressed,
                         cardChild: Icon(FontAwesomeIcons.person),
                       ),
                     ),
                     Expanded(
                       child: CreateContainer(
-                        colour: colorContainerUnpressed,
+                        colour: kColorContainerUnpressed,
                         cardChild: Icon(FontAwesomeIcons.person),
                       ),
                     ),
@@ -105,14 +132,13 @@ class _NameInputState extends State<NameInput> {
                 ),
               ),
               Container(
-                color: colorBottomContainer,
+                color: kColorBottomContainer,
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
-                height: bottomContainerHeight,
+                height: kBottomContainerHeight,
               )
             ],
           ),
         ));
   }
 }
-

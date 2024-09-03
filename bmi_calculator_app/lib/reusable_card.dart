@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'constants.dart';
 
 class CreateContainer extends StatelessWidget {
   const CreateContainer({required this.colour, required this.cardChild});
@@ -19,13 +20,10 @@ class CreateContainer extends StatelessWidget {
   }
 }
 
-const double labelSize = 30;
-const double iconSize = 80;
-
-class IconContent extends StatelessWidget {
+class GenderContent extends StatelessWidget {
   final IconData fontName;
   final String label;
-  const IconContent({
+  const GenderContent({
     super.key,
     required this.fontName,
     required this.label,
@@ -38,19 +36,31 @@ class IconContent extends StatelessWidget {
         children: [
           Icon(
             fontName,
-            size: iconSize,
-            color: Color(0xFF8D8E98),
+            size: kIconSize,
+            color: kFontColor,
           ),
           const SizedBox(
             height: 10,
           ),
           Text(label,
-              style: TextStyle(
-                fontSize: labelSize,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF8D8E98),
-              )),
+              style: kTextStyleForFonts),
         ]);
+  }
+}
+
+class IconContent extends StatelessWidget {
+  final String label;
+  const IconContent({
+    super.key,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(label,
+                style: kTextStyleForFonts),
+    );
   }
 }
 
