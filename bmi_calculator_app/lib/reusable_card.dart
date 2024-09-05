@@ -23,6 +23,7 @@ class CreateContainer extends StatelessWidget {
 class GenderContent extends StatelessWidget {
   final IconData fontName;
   final String label;
+
   const GenderContent({
     super.key,
     required this.fontName,
@@ -31,25 +32,23 @@ class GenderContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            fontName,
-            size: kIconSize,
-            color: kFontColor,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(label,
-              style: kTextStyleForFonts),
-        ]);
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Icon(
+        fontName,
+        size: kIconSize,
+        color: kFontColor,
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      Text(label, style: kTextStyleForFonts),
+    ]);
   }
 }
 
 class IconContent extends StatelessWidget {
   final String label;
+
   const IconContent({
     super.key,
     required this.label,
@@ -58,14 +57,14 @@ class IconContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(label,
-                style: kTextStyleForFonts),
+      child: Text(label, style: kTextStyleForFonts),
     );
   }
 }
 
 class CreateGenderContainer extends StatelessWidget {
-  const CreateGenderContainer({required this.colour, required this.cardChild, required this.onPress});
+  const CreateGenderContainer(
+      {required this.colour, required this.cardChild, required this.onPress});
 
   final Color colour;
   final Widget cardChild;

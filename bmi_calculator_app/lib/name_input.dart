@@ -14,6 +14,8 @@ class _NameInputState extends State<NameInput> {
   Color maleCardColor = kColorContainerUnpressed;
   Color femaleCardColor = kColorContainerUnpressed;
   int height = 180;
+  int weight = 50;
+  int age = 20;
 
   void updateColor(GenderName gender) {
     if (gender == GenderName.male) {
@@ -84,7 +86,14 @@ class _NameInputState extends State<NameInput> {
                   colour: kColorContainerUnpressed,
                   cardChild: Column(
                     children: [
-                      IconContent(label: 'Height'),
+                      Text(
+                        'Height',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 50,
+                          color: kFontColor,
+                        ),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -98,7 +107,7 @@ class _NameInputState extends State<NameInput> {
                         ],
                       ),
                       Slider(
-                          activeColor: kColorBottomContainer,
+                          activeColor: Colors.white,
                           inactiveColor: Color(0xFF8D8E98),
                           min: 120.0,
                           max: 220.0,
@@ -119,13 +128,118 @@ class _NameInputState extends State<NameInput> {
                     Expanded(
                       child: CreateContainer(
                         colour: kColorContainerUnpressed,
-                        cardChild: Icon(FontAwesomeIcons.person),
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            IconContent(
+                              label: 'Weight',
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                              textBaseline: TextBaseline.alphabetic,
+                              children: [
+                                Text(weight.toString(), style: kTextStyleForCm),
+                                Text(
+                                  'kg',
+                                  style: kTextStyleForFonts,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      weight--;
+                                    });
+                                  },
+                                  child: Icon(FontAwesomeIcons.minus,
+                                      color: Colors.black),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(15),
+                                    backgroundColor: Colors.white,
+                                    // <-- Button color
+                                    foregroundColor:
+                                        Colors.grey, // <-- Splash color
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      weight++;
+                                    });
+                                  },
+                                  child: Icon(FontAwesomeIcons.plus,
+                                      color: Colors.black),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(15),
+                                    backgroundColor: Colors.white,
+                                    // <-- Button color
+                                    foregroundColor:
+                                        Colors.grey, // <-- Splash color
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     Expanded(
                       child: CreateContainer(
                         colour: kColorContainerUnpressed,
-                        cardChild: Icon(FontAwesomeIcons.person),
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            IconContent(label: 'Age'),
+                            Center(
+                                child: Text(age.toString(),
+                                    style: kTextStyleForCm)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      age--;
+                                    });
+                                  },
+                                  child: Icon(FontAwesomeIcons.minus,
+                                      color: Colors.black),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(15),
+                                    backgroundColor: Colors.white,
+                                    // <-- Button color
+                                    foregroundColor:
+                                        Colors.grey, // <-- Splash color
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      age++;
+                                    });
+                                  },
+                                  child: Icon(FontAwesomeIcons.plus,
+                                      color: Colors.black),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(15),
+                                    backgroundColor: Colors.white,
+                                    // <-- Button color
+                                    foregroundColor:
+                                        Colors.grey, // <-- Splash color
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],
