@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
+import 'round_icon_button.dart';
 
 class NameInput extends StatefulWidget {
   const NameInput({super.key});
@@ -129,7 +130,7 @@ class _NameInputState extends State<NameInput> {
                       child: CreateContainer(
                         colour: kColorContainerUnpressed,
                         cardChild: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconContent(
                               label: 'Weight',
@@ -149,40 +150,22 @@ class _NameInputState extends State<NameInput> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                ElevatedButton(
-                                  onPressed: () {
+                                RoundIconButton(
+                                  child: FontAwesomeIcons.minus,
+                                  onPress: () {
                                     setState(() {
                                       weight--;
                                     });
                                   },
-                                  child: Icon(FontAwesomeIcons.minus,
-                                      color: Colors.black),
-                                  style: ElevatedButton.styleFrom(
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    backgroundColor: Colors.white,
-                                    // <-- Button color
-                                    foregroundColor:
-                                        Colors.grey, // <-- Splash color
-                                  ),
                                 ),
-                                ElevatedButton(
-                                  onPressed: () {
+                                RoundIconButton(
+                                  child: FontAwesomeIcons.plus,
+                                  onPress: () {
                                     setState(() {
                                       weight++;
                                     });
                                   },
-                                  child: Icon(FontAwesomeIcons.plus,
-                                      color: Colors.black),
-                                  style: ElevatedButton.styleFrom(
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    backgroundColor: Colors.white,
-                                    // <-- Button color
-                                    foregroundColor:
-                                        Colors.grey, // <-- Splash color
-                                  ),
-                                ),
+                                )
                               ],
                             )
                           ],
@@ -202,39 +185,20 @@ class _NameInputState extends State<NameInput> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      age--;
-                                    });
-                                  },
-                                  child: Icon(FontAwesomeIcons.minus,
-                                      color: Colors.black),
-                                  style: ElevatedButton.styleFrom(
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    backgroundColor: Colors.white,
-                                    // <-- Button color
-                                    foregroundColor:
-                                        Colors.grey, // <-- Splash color
-                                  ),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
+                                RoundIconButton(
+                                    child: FontAwesomeIcons.minus,
+                                    onPress: () {
+                                      setState(() {
+                                        age--;
+                                      });
+                                    }),
+                                RoundIconButton(
+                                  child: FontAwesomeIcons.plus,
+                                  onPress: () {
                                     setState(() {
                                       age++;
                                     });
                                   },
-                                  child: Icon(FontAwesomeIcons.plus,
-                                      color: Colors.black),
-                                  style: ElevatedButton.styleFrom(
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(15),
-                                    backgroundColor: Colors.white,
-                                    // <-- Button color
-                                    foregroundColor:
-                                        Colors.grey, // <-- Splash color
-                                  ),
                                 ),
                               ],
                             )
