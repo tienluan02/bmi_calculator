@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'reusable_card.dart';
+import '../components/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'constants.dart';
-import 'round_icon_button.dart';
+import '../components/constants.dart';
+import '../components/round_icon_button.dart';
+import 'result_screen.dart';
 
 class NameInput extends StatefulWidget {
   const NameInput({super.key});
@@ -153,17 +154,21 @@ class _NameInputState extends State<NameInput> {
                                 RoundIconButton(
                                   child: FontAwesomeIcons.minus,
                                   onPress: () {
-                                    setState(() {
-                                      weight--;
-                                    });
+                                    setState(
+                                      () {
+                                        weight--;
+                                      },
+                                    );
                                   },
                                 ),
                                 RoundIconButton(
                                   child: FontAwesomeIcons.plus,
                                   onPress: () {
-                                    setState(() {
-                                      weight++;
-                                    });
+                                    setState(
+                                      () {
+                                        weight++;
+                                      },
+                                    );
                                   },
                                 )
                               ],
@@ -176,7 +181,7 @@ class _NameInputState extends State<NameInput> {
                       child: CreateContainer(
                         colour: kColorContainerUnpressed,
                         cardChild: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconContent(label: 'Age'),
                             Center(
@@ -186,18 +191,21 @@ class _NameInputState extends State<NameInput> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 RoundIconButton(
-                                    child: FontAwesomeIcons.minus,
-                                    onPress: () {
-                                      setState(() {
-                                        age--;
-                                      });
-                                    }),
+                                  child: FontAwesomeIcons.minus,
+                                  onPress: () {
+                                    setState(() {
+                                      age--;
+                                    });
+                                  },
+                                ),
                                 RoundIconButton(
                                   child: FontAwesomeIcons.plus,
                                   onPress: () {
-                                    setState(() {
-                                      age++;
-                                    });
+                                    setState(
+                                      () {
+                                        age++;
+                                      },
+                                    );
                                   },
                                 ),
                               ],
@@ -209,11 +217,18 @@ class _NameInputState extends State<NameInput> {
                   ],
                 ),
               ),
-              Container(
-                color: kColorBottomContainer,
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                width: double.infinity,
-                height: kBottomContainerHeight,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {return ResultScreen();} ));
+    },
+                child: Container(
+                  color: kColorBottomContainer,
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  width: double.infinity,
+                  height: kBottomContainerHeight,
+                  child: Center(child: Text('CALCULATE', style: kTextStyleForFonts)),
+                ),
               )
             ],
           ),
