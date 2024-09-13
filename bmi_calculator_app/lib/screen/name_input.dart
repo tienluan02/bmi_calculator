@@ -16,7 +16,7 @@ class _NameInputState extends State<NameInput> {
   Color maleCardColor = kColorContainerUnpressed;
   Color femaleCardColor = kColorContainerUnpressed;
   int height = 180;
-  int weight = 50;
+  int weight = 60;
   int age = 20;
   GenderName? gender;
 
@@ -32,6 +32,10 @@ class _NameInputState extends State<NameInput> {
         maleCardColor = kColorContainerUnpressed;
       }
     }
+  }
+
+  double calculateBMI(double weight, double height) {
+    return ((weight/((height/100)*(height/100))).toInt()).roundToDouble();
   }
 
   @override
@@ -238,6 +242,7 @@ class _NameInputState extends State<NameInput> {
                   weight: weight,
                   height: height.toDouble(),
                   genderName: gender,
+                  bmiResult: calculateBMI(weight.toDouble(), height.toDouble()),
                 );
               },
             ),

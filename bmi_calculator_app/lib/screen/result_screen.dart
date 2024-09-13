@@ -9,20 +9,23 @@ class ResultScreen extends StatelessWidget {
   final int weight;
   final double height;
   final GenderName? genderName;
+  final double bmiResult;
 
   const ResultScreen(
       {super.key,
       required this.age,
       required this.weight,
       required this.height,
-      required this.genderName});
+      required this.genderName,
+      required this.bmiResult
+      });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -35,7 +38,7 @@ class ResultScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const Expanded(
+              Expanded(
                 flex: 5,
                 child: CreateContainer(
                   colour: kColorContainerUnpressed,
@@ -43,9 +46,9 @@ class ResultScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('àdasf', style: kResultTextStyle),
-                      Text('13241234', style: kBmiResultStyle),
-                      Text(
+                      const Text('you are about to die very soon', style: kResultTextStyle),
+                      Text(bmiResult.toString(), style: kBmiResultStyle),
+                      const Text(
                           textAlign: TextAlign.center,
                           'you will need a medical treatment', style: kAdviceStyle),
                     ],
