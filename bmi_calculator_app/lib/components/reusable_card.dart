@@ -2,20 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'constants.dart';
 
 class CreateContainer extends StatelessWidget {
-  const CreateContainer({required this.colour, required this.cardChild});
+  const CreateContainer({required this.colour, required this.cardChild, this.onPress});
 
   final Color colour;
   final Widget cardChild;
+  final VoidCallback? onPress;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: colour,
+    return GestureDetector(
+      onTap: onPress,
+      child: Container(
+        margin: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: colour,
+        ),
+        child: cardChild,
       ),
-      child: cardChild,
     );
   }
 }
@@ -58,30 +62,6 @@ class IconContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(label, style: kTextStyleForFonts),
-    );
-  }
-}
-
-class CreateGenderContainer extends StatelessWidget {
-  const CreateGenderContainer(
-      {required this.colour, required this.cardChild, required this.onPress});
-
-  final Color colour;
-  final Widget cardChild;
-  final VoidCallback onPress;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPress,
-      child: Container(
-        margin: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: colour,
-        ),
-        child: cardChild,
-      ),
     );
   }
 }
