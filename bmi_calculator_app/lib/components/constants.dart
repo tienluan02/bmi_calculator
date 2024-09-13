@@ -3,6 +3,17 @@ import 'package:flutter/material.dart';
 const double  kLabelSize = 30;
 const double kIconSize = 80;
 
+const List<String> basicAnswer = [
+  'Lightweight',
+  'Normal',
+  'Overweight',
+];
+
+const List<String> advice = [
+  'you will need to eat more',
+  'you are ready to go my friend !',
+  'you will need to do some exercises'
+];
 
 const double kBottomContainerHeight = 80;
 const kFontColor = Color(0xFF8D8E98);
@@ -40,6 +51,18 @@ const kBmiResultStyle = TextStyle(
 const kAdviceStyle = TextStyle(
   color: Colors.white,
   fontSize: 30,
+);
+
+const kBmiNormal = TextStyle(
+  color: kFontColor,
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);
+
+const kBmiRange = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 20,
+  color: Colors.white,
 );
 
 class BottomButton extends StatelessWidget {

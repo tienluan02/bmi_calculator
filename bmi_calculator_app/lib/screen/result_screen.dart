@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../components/constants.dart';
 
 class ResultScreen extends StatelessWidget {
-
   final int age;
   final int weight;
   final double height;
@@ -17,25 +16,47 @@ class ResultScreen extends StatelessWidget {
       required this.weight,
       required this.height,
       required this.genderName,
-      required this.bmiResult
+      required this.bmiResult,
       });
 
+  String greenAnswer(double bmiResult) {
+    if (bmiResult < 18.5) {
+      return basicAnswer[0];
+    } else if (bmiResult < 25) {
+      return basicAnswer[1];
+    }
+    return basicAnswer[2];
+  }
+
+  String giveAdvice (double bmiResult) {
+    if (bmiResult < 18.5) {
+      return advice[0];
+    } else if (bmiResult < 25) {
+      return advice[1];
+    }
+    return advice[2];
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
-                'Your Result',
-                style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              Container(
+                padding: EdgeInsets.all(15),
+                alignment: Alignment.bottomLeft,
+                child: const Text(
+                  'Your Result',
+                  style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               Expanded(
@@ -46,11 +67,19 @@ class ResultScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('you are about to die very soon', style: kResultTextStyle),
+                      Text(greenAnswer(bmiResult),
+                          style: kResultTextStyle),
                       Text(bmiResult.toString(), style: kBmiResultStyle),
-                      const Text(
+                      const Column(
+                        children: [
+                          Text('Normal BMI range:', style: kBmiNormal),
+                          Text('18,5 - 25 kg/m2', style: kBmiRange),
+                        ],
+                      ),
+                      Text(
                           textAlign: TextAlign.center,
-                          'you will need a medical treatment', style: kAdviceStyle),
+                          giveAdvice(bmiResult), 
+                          style: kAdviceStyle),
                     ],
                   ),
                 ),
